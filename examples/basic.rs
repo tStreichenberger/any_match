@@ -1,16 +1,12 @@
 use std::{
     io::Error as IoError,
     str::Utf8Error,
-    sync::mpsc::{SendError, RecvError},
+    sync::mpsc::{RecvError, SendError},
 };
 
-use anyhow::{
-    Result as AnyResult,
-    Context,
-};
+use anyhow::{Context, Result as AnyResult};
 
-use anyhow_macro::any_match;
-
+use any_match::any_match;
 
 fn main() {
     let anyhow_err = throw_io().unwrap_err();
@@ -27,16 +23,14 @@ fn main() {
 
     println!("{as_string}");
 
-
     let anyhow_err = throw_io().unwrap_err();
-    any_match!{ (anyhow_err): 
+    any_match! { (anyhow_err):
         _ => {
             // idk why you would do this but you can
             println!("Do nothing");
         }
     }
 }
-
 
 fn stringify_and_print(anyhow_err: anyhow::Error) -> String {
     any_match! { (anyhow_err):

@@ -1,5 +1,5 @@
 [package]
-name = "anyhow_macro"
+name = "any_match"
 version = "0.1.0"
 edition = "2021"
 
